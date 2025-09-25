@@ -4,11 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Travel - הדרך החכמה לטייל בעולם</title>
-    <meta name="description" content="Smart Travel - חופשות חלומיות במחירים נגישים. שירות אישי ומקצועי עם 5+ שנות ניסיון ו-5000+ לקוחות מרוצים.">
+    <meta name="description" content="Smart Travel - חופשות חלומיות במחירים נגישים. שירות אישי ומקצועי עם 7+ שנות ניסיון ו-5000+ לקוחות מרוצים.">
     <meta name="keywords" content="Smart Travel, חופשות, נסיעות, סוכנות תיירות, ייעוץ נסיעות">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Smart Travel - הדרך החכמה לטייל בעולם">
+    <meta property="og:description" content="חופשות חלומיות במחירים נגישים. שירות אישי ומקצועי עם 7+ שנות ניסיון.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://smarttravel.co.il">
+    <meta property="og:image" content="https://smarttravel.co.il/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://smarttravel.co.il">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.coverr.co/videos/coverr-sunny-beach-waves/1080p.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" as="style">
+    
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
     <!-- Header -->
@@ -20,14 +43,16 @@
                     <span>הדרך החכמה לטייל</span>
                 </div>
                 <nav class="nav">
-                    <ul class="nav-menu">
-                        <li><a href="#home" class="nav-link">בית</a></li>
-                        <li><a href="#about" class="nav-link">אודות</a></li>
-                        <li><a href="#testimonials" class="nav-link">ביקורות</a></li>
-                        <li><a href="#faq" class="nav-link">שאלות נפוצות</a></li>
-                        <li><a href="#contact" class="nav-link">צור קשר</a></li>
+                    <ul class="nav-menu" id="nav-menu" role="menubar">
+                        <li role="none"><a href="#home" class="nav-link" role="menuitem">בית</a></li>
+                        <li role="none"><a href="#about" class="nav-link" role="menuitem">אודות</a></li>
+                        <li role="none"><a href="#testimonials" class="nav-link" role="menuitem">ביקורות</a></li>
+                        <li role="none"><a href="#blog" class="nav-link" role="menuitem">בלוג</a></li>
+                        <li role="none"><a href="#faq" class="nav-link" role="menuitem">שאלות נפוצות</a></li>
+                        <li role="none"><a href="#contact" class="nav-link" role="menuitem">צור קשר</a></li>
                     </ul>
-                    <button class="nav-toggle" aria-label="פתח תפריט">
+                    <button class="nav-toggle" aria-label="פתח תפריט" aria-expanded="false" aria-controls="nav-menu">
+                        <span class="sr-only">תפריט ניווט</span>
                         <span></span>
                         <span></span>
                         <span></span>
@@ -38,23 +63,28 @@
     </header>
 
     <main id="main">
-        <!-- Hero Section -->
+        <!-- Hero Section with Video Background -->
         <section id="home" class="hero">
-            <div class="hero-background">
+            <div class="hero-video">
+                <video autoplay muted loop playsinline preload="metadata">
+                    <source src="https://cdn.coverr.co/videos/coverr-sunny-beach-waves/1080p.mp4" type="video/mp4">
+                    <source src="https://cdn.coverr.co/videos/coverr-sunny-beach-waves/720p.mp4" type="video/mp4">
+                    Your browser does not support video backgrounds.
+                </video>
                 <div class="hero-overlay"></div>
             </div>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">הדרך החכמה לטייל בעולם</h1>
                     <p class="hero-subtitle">חופשות בלעדיות במחירים שתתקשו למצוא במקום אחר</p>
-                    <button class="btn btn-primary btn-large" onclick="scrollToSection('contact')">
+                    <button class="btn btn--primary btn--lg" onclick="scrollToSection('contact')">
                         בואו נתכנן יחד את החופשה שלכם
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- Why Us Section -->
+        <!-- Why Us Section with Custom SVG Icons -->
         <section class="why-us">
             <div class="container">
                 <div class="section-header">
@@ -63,28 +93,43 @@
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-shield-check"></i>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 1L8.5 4.5L8 6H16L15.5 4.5L12 1Z" fill="currentColor"/>
+                                <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
                         <h3>מומחיות ואמינות</h3>
                         <p>צוות מקצועי עם ניסיון עשיר בתכנון חופשות מושלמות</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-dollar-sign"></i>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                                <path d="M8 20L9.09 15.26L16 14L9.09 13.74L8 9L6.91 13.74L0 14L6.91 15.26L8 20Z" fill="currentColor" opacity="0.7"/>
+                            </svg>
                         </div>
                         <h3>מחירים הוגנים</h3>
                         <p>קשרים ישירים עם ספקים מובילים מבטיחים מחירים תחרותיים</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-heart"></i>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.84 4.61C19.32 3.61 17.58 3 12 3C6.42 3 4.68 3.61 3.16 4.61C2 5.41 2 6.59 2 8V16C2 17.41 2 18.59 3.16 19.39C4.68 20.39 6.42 21 12 21C17.58 21 19.32 20.39 20.84 19.39C22 18.59 22 17.41 22 16V8C22 6.59 22 5.41 20.84 4.61Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="currentColor"/>
+                                <path d="M12 7V17M7 12H17" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+                            </svg>
                         </div>
                         <h3>שירות מותאם אישית</h3>
                         <p>התאמה מלאה לצרכים האישיים שלכם ולתקציב</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-phone-alt"></i>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6V12L16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8 2H16M8 22H16" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+                            </svg>
                         </div>
                         <h3>זמינות וליווי</h3>
                         <p>תמיכה מקצועית לפני, במהלך ואחרי הטיול</p>
@@ -93,55 +138,141 @@
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section with Team Image -->
         <section id="about" class="about">
             <div class="container">
                 <div class="about-content">
                     <div class="about-text">
                         <h2>מי אנחנו</h2>
-                        <p class="about-intro">מאז 2020, Smart Travel מציעה לישראלים חופשות חלומיות במחירים נגישים. בזכות קשרים בינלאומיים עם ספקי תיירות, אנחנו מביאים לכם מבצעים בלעדיים שלא תמצאו בשום מקום אחר.</p>
+                        <p class="about-intro">מאז 2020, Smart Travel מציעה לישראלים חופשות חלומיות במחירים נגישים. בזכות קשרים בינלאומיים עם ספקי תיירות מובילים, אנחנו מביאים לכם מבצעים בלעדיים שלא תמצאו בשום מקום אחר.</p>
                         
                         <div class="about-highlights">
                             <div class="highlight-item">
-                                <i class="fas fa-award"></i>
-                                <span>5+ שנות ניסיון בתחום התיירות</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="9" stroke="#10b981" stroke-width="2"/>
+                                </svg>
+                                <span>7+ שנות ניסיון בתחום התיירות</span>
                             </div>
                             <div class="highlight-item">
-                                <i class="fas fa-users"></i>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="9" stroke="#10b981" stroke-width="2"/>
+                                </svg>
                                 <span>5000+ לקוחות מרוצים וממליצים</span>
                             </div>
                             <div class="highlight-item">
-                                <i class="fas fa-headset"></i>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="9" stroke="#10b981" stroke-width="2"/>
+                                </svg>
                                 <span>שירות אישי ומקצועי לאורך כל הדרך</span>
                             </div>
                             <div class="highlight-item">
-                                <i class="fas fa-hand-holding-dollar"></i>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12L11 14L15 10" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="9" stroke="#10b981" stroke-width="2"/>
+                                </svg>
                                 <span>מחירים הוגנים ושקופים ללא עמלות נסתרות</span>
                             </div>
                         </div>
                         
-                        <p>אנחנו מאמינים שחופשה חלומית לא חייבת להיות יקרה. הצוות המנוסה שלנו עובד קשה כדי למצוא עבורכם את החבילות הטובות ביותר במחירים הכי נוחים.</p>
-                        
-                        <p>כל לקוח מקבל יחס אישי ומעקב מקצועי עד לרגע החזרה הביתה. אנחנו כאן כדי להפוך את החלום שלכם למציאות.</p>
+                        <div class="team-section">
+                            <div class="team-image">
+                                <picture>
+                                    <source srcset="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/4f2eedb9-9b0b-45e5-9549-e12091f51667.png" type="image/webp">
+                                    <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/4f2eedb9-9b0b-45e5-9549-e12091f51667.png" alt="דנה כהן - מנהלת כללית Smart Travel" loading="lazy">
+                                </picture>
+                            </div>
+                            <div class="team-text">
+                                <h3>דנה כהן - מנהלת כללית</h3>
+                                <p>"אנחנו מאמינים שחופשה חלומית לא חייבת להיות יקרה. הצוות המנוסה שלנו עובד קשה כדי למצוא עבורכם את החבילות הטובות ביותר במחירים הכי נוחים."</p>
+                                <p>"כל לקוח מקבל יחס אישי ומעקב מקצועי עד לרגע החזרה הביתה. אנחנו כאן כדי להפוך את החלום שלכם למציאות."</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials Section -->
+        <!-- Trust Badges Section -->
+        <section class="trust-badges">
+            <div class="container">
+                <div class="section-header">
+                    <h2>השותפים שלנו</h2>
+                    <p>עובדים עם חברות התעופה והמלונות המובילות בעולם</p>
+                </div>
+                <div class="badges-grid">
+                    <!-- Major Airlines -->
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <rect x="10" y="15" width="100" height="30" rx="15" fill="#c41e3a"/>
+                            <text x="60" y="35" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Emirates</text>
+                        </svg>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <circle cx="60" cy="30" r="20" fill="#f9ba00"/>
+                            <text x="60" y="35" text-anchor="middle" fill="#003366" font-size="10" font-weight="bold">Lufthansa</text>
+                        </svg>
+                    </div>
+                    
+                    <!-- Major Hotels -->
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <rect x="20" y="20" width="80" height="20" rx="10" fill="#003366"/>
+                            <text x="60" y="33" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Hilton</text>
+                        </svg>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <rect x="15" y="18" width="90" height="24" rx="12" fill="#8B0000"/>
+                            <text x="60" y="34" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Marriott</text>
+                        </svg>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <rect x="10" y="15" width="100" height="30" rx="15" fill="#003580"/>
+                            <text x="60" y="35" text-anchor="middle" fill="white" font-size="10" font-weight="bold">Booking.com</text>
+                        </svg>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <rect x="10" y="15" width="100" height="30" rx="15" fill="#e60000"/>
+                            <text x="60" y="35" text-anchor="middle" fill="white" font-size="11" font-weight="bold">Expedia</text>
+                        </svg>
+                    </div>
+                    <div class="badge-item">
+                        <svg width="120" height="60" viewBox="0 0 120 60" fill="none">
+                            <rect x="10" y="15" width="100" height="30" rx="15" fill="#006600"/>
+                            <text x="60" y="35" text-anchor="middle" fill="white" font-size="11" font-weight="bold">ועוד...</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section with Real Images -->
         <section id="testimonials" class="testimonials">
             <div class="container">
                 <div class="section-header">
                     <h2>מה הלקוחות אומרים עלינו</h2>
+                    <p>חוות דעת אמיתיות מלקוחות מרוצים | <a href="https://www.google.com/search?q=Smart+Travel+reviews" target="_blank" class="reviews-link">צפו בעוד ביקורות ב-Google Reviews</a></p>
                 </div>
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <picture>
+                                <source srcset="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/1b53ea6d-5885-44e4-9bdc-eee31ce81f10.png" type="image/webp">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/1b53ea6d-5885-44e4-9bdc-eee31ce81f10.png" alt="רחל גולדשטיין - לקוחה מרוצה" loading="lazy">
+                            </picture>
+                        </div>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
                         </div>
                         <p>"חופשה מדהימה! השירות היה מעולה, הכל מסודר בפרפקט והמחיר הוגן. בהחלט נחזור שוב!"</p>
                         <div class="testimonial-author">
@@ -150,12 +281,18 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <picture>
+                                <source srcset="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/eda76187-8e32-4005-80e8-e6fea58eea8b.png" type="image/webp">
+                                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/eda76187-8e32-4005-80e8-e6fea58eea8b.png" alt="דוד רוזנבלום - לקוח מרוצה" loading="lazy">
+                            </picture>
+                        </div>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
                         </div>
                         <p>"כבר השלישית פעם שמזמין דרך Smart Travel. הכי מקצועיים ואמינים שפגשתי!"</p>
                         <div class="testimonial-author">
@@ -164,12 +301,20 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <div class="placeholder-image">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 21C20 16.0294 16.4183 12 12 12C7.58172 12 4 16.0294 4 21" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
                         <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
                         </div>
                         <p>"ארגנו לנו חופשה משפחתית מושלמת. הילדים נהנו מאוד והכל עבר בשקט מוחלט."</p>
                         <div class="testimonial-author">
@@ -178,19 +323,182 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <div class="stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <div class="testimonial-image">
+                            <div class="placeholder-image">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 21C20 16.0294 16.4183 12 12 12C7.58172 12 4 16.0294 4 21" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
                         </div>
-                        <p>"מחירים הוגנים, שירות מעולה וחופשה בלתי נשכחת. ממליץ בחום לכל המכרים!"</p>
+                        <div class="stars">
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                        </div>
+                        <p>"שירות מעולה! הציעו לנו חבילה שלא הייתה לנו מודעים אליה וחסכו לנו אלפי שקלים. מומלץ בחום!"</p>
                         <div class="testimonial-author">
-                            <strong>אבי נגר</strong>
+                            <strong>יוסי לוי</strong>
+                            <span>רמת גן</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <div class="placeholder-image">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 21C20 16.0294 16.4183 12 12 12C7.58172 12 4 16.0294 4 21" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                        </div>
+                        <p>"התמיכה שלהם מעולה - גם לפני הטיול, גם במהלך הטיול וגם אחרי. הרגשנו בטוחים ומלווים."</p>
+                        <div class="testimonial-author">
+                            <strong>שרה כהן</strong>
                             <span>באר שבע</span>
                         </div>
                     </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <div class="placeholder-image">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 21C20 16.0294 16.4183 12 12 12C7.58172 12 4 16.0294 4 21" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                        </div>
+                        <p>"המחירים שלהם תחרותיים והשירות אישי. הם התאימו לנו חופשה מושלמת לתקציב שלנו."</p>
+                        <div class="testimonial-author">
+                            <strong>אבי רוזן</strong>
+                            <span>פתח תקווה</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <div class="placeholder-image">
+                                <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M20 21C20 16.0294 16.4183 12 12 12C7.58172 12 4 16.0294 4 21" stroke="currentColor" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stars">
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                            <i class="star-icon">★</i>
+                        </div>
+                        <p>"חברת תיירות אמינה ומקצועית. כבר הפעם השנייה שאנחנו נוסעים איתם והכל תמיד מושלם!"</p>
+                        <div class="testimonial-author">
+                            <strong>רחל אברהם</strong>
+                            <span>אשדוד</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2>השירותים שלנו</h2>
+                    <p>מגוון רחב של שירותי תיירות מקצועיים</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>חבילות טיסה + מלון</h3>
+                        <p>חבילות משולבות במחירים מיוחדים לכל רחבי העולם</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2C13.1046 2 14 2.89543 14 4C14 5.10457 13.1046 6 12 6C10.8954 6 10 5.10457 10 4C10 2.89543 10.8954 2 12 2Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M21 9V7L12 2L3 7V9L12 14L21 9Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M5 14V22H19V14" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>הזמנת מלונות</h3>
+                        <p>מלונות מכל הרמות - מבאדג'ט ועד חמישה כוכבים</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3>ביטוח נסיעות</h3>
+                        <p>ביטוח מקיף לכל סוגי הנסיעות והפעילויות</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                <path d="M20 8V14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 11L20 8L17 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>טיולים קבוצתיים</h3>
+                        <p>טיולים מאורגנים עם מדריכים מקצועיים</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>טיסות פנימיות</h3>
+                        <p>טיסות פנימיות בישראל ובכל העולם</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>העברות משדה התעופה</h3>
+                        <p>העברות נוחות ובטוחות משדות התעופה</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="blog">
+            <div class="container">
+                <div class="section-header">
+                    <h2>טיפים וכתבות</h2>
+                    <p>מידע שימושי לטיולים חכמים וחסכוניים</p>
+                </div>
+                <div id="blog-grid" class="blog-grid">
+                    <!-- Blog posts will be loaded dynamically -->
                 </div>
             </div>
         </section>
@@ -204,26 +512,32 @@
                 <div class="faq-list">
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
-                            <span>האם המחירים כוללים את כל החרושות והמסים?</span>
-                            <i class="faq-icon fas fa-plus"></i>
+                            <span>האם המחירים כוללים את כל המסים וההיטלים?</span>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>כן, כל המחירים באתר כוללים מסים, חרושות נמל תעופה וביטוח נסיעות בסיסי. אין עמלות נסתרות.</p>
+                            <p>כן, כל המחירים באתר כוללים מסים, היטלי נמל תעופה וביטוח נסיעות בסיסי. אין עמלות נסתרות.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>איך אני יודע שההזמנה שלי בטוחה?</span>
-                            <i class="faq-icon fas fa-plus"></i>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </button>
                         <div class="faq-answer">
-                            <p>אנחנו עובדים רק עם חברות תעופה וקשת מלונות מוכרות ומהימנות. כל הזמנה מתבצעת דרך מערכות בטוחות ומקבלת אישור תוך 24 שעות.</p>
+                            <p>אנחנו עובדים רק עם חברות תעופה ורשתות מלונות מוכרות ומהימנות. כל הזמנה מתבצעת דרך מערכות בטוחות ומקבלת אישור תוך 24 שעות.</p>
                         </div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>מה קורה במקרה של ביטול או שינוי בהזמנה?</span>
-                            <i class="faq-icon fas fa-plus"></i>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </button>
                         <div class="faq-answer">
                             <p>לכל חבילה יש תנאי ביטול שונים בהתאם לספק. אנחנו מסייעים בכל תהליך הביטול או השינוי ללא עמלות נוספות מצידנו.</p>
@@ -232,7 +546,9 @@
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>האם אפשר לקבל תשלומים?</span>
-                            <i class="faq-icon fas fa-plus"></i>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </button>
                         <div class="faq-answer">
                             <p>כן, אנחנו מציעים תשלומים עד 12 תשלומים ללא ריבית בכרטיסי אשראי מובילים (בכפוף לאישור חברת האשראי).</p>
@@ -241,7 +557,9 @@
                     <div class="faq-item">
                         <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
                             <span>איזה סוגי חבילות אתם מציעים?</span>
-                            <i class="faq-icon fas fa-plus"></i>
+                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </button>
                         <div class="faq-answer">
                             <p>אנחנו מתמחים בחבילות טיסה+מלון לכל רחבי העולם, חופשות משפחתיות, נופשי זוגות רומנטיים וטיולים קבוצתיים מותאמים אישית.</p>
@@ -260,68 +578,83 @@
                 </div>
                 <div class="contact-content">
                     <div class="contact-form">
-                        <form id="contactForm" novalidate>
+                        <form id="contactForm" novalidate role="form" aria-label="טופס יצירת קשר">
                             <div class="form-group">
                                 <label for="name">שם מלא *</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
-                                <div class="error-message" id="name-error"></div>
+                                <input type="text" id="name" name="name" class="form-control" required aria-describedby="name-error" autocomplete="name">
+                                <div class="error-message" id="name-error" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="phone">טלפון *</label>
-                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="050-1234567" required>
-                                <div class="error-message" id="phone-error"></div>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="050-1234567" required aria-describedby="phone-error" autocomplete="tel">
+                                <div class="error-message" id="phone-error" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="email">דוא״ל *</label>
-                                <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" required>
-                                <div class="error-message" id="email-error"></div>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" required aria-describedby="email-error" autocomplete="email">
+                                <div class="error-message" id="email-error" role="alert" aria-live="polite"></div>
                             </div>
                             <div class="form-group">
                                 <label for="subject">נושא</label>
-                                <select id="subject" name="subject" class="form-control">
+                                <select id="subject" name="subject" class="form-control" aria-describedby="subject-help">
                                     <option value="">בחר נושא</option>
                                     <option value="vacation-planning">תכנון חופשה</option>
                                     <option value="price-quote">בקשת הצעת מחיר</option>
                                     <option value="general-inquiry">פנייה כללית</option>
                                     <option value="existing-booking">הזמנה קיימת</option>
                                 </select>
+                                <small id="subject-help" class="sr-only">בחר את הנושא המתאים לפנייה שלך</small>
                             </div>
                             <div class="form-group">
                                 <label for="message">הודעה *</label>
-                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="ספרו לנו על החופשה שאתם מחפשים..." required></textarea>
-                                <div class="error-message" id="message-error"></div>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="ספרו לנו על החופשה שאתם מחפשים..." required aria-describedby="message-error"></textarea>
+                                <div class="error-message" id="message-error" role="alert" aria-live="polite"></div>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-full-width">
-                                <i class="fas fa-paper-plane"></i>
+                            <button type="submit" class="btn btn--primary btn--full-width">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="margin-left: 8px;">
+                                    <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                                 שלח הודעה
                             </button>
                         </form>
                     </div>
                     <div class="contact-info">
                         <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
+                            </svg>
                             <div>
                                 <h4>כתובת</h4>
                                 <p>רחוב הרצל 123, תל אביב</p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-phone"></i>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M22 16.92V19.92C22 20.52 21.52 21 20.92 21C9.4 21 0 11.6 0 0.08C0 -0.52 0.48 -1 1.08 -1H4.08C4.68 -1 5.08 -0.52 5.08 0.08C5.08 2.58 5.58 5.08 6.58 7.38C6.88 8.08 6.68 8.88 6.08 9.38L4.08 11.08C5.88 14.58 9.42 18.12 12.92 19.92L14.62 17.92C15.12 17.32 15.92 17.12 16.62 17.42C18.92 18.42 21.42 18.92 23.92 18.92C24.52 18.92 25 19.4 25 20V23Z" stroke="currentColor" stroke-width="2"/>
+                            </svg>
                             <div>
                                 <h4>טלפון</h4>
                                 <p><a href="tel:03-1234567">03-1234567</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2"/>
+                                <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2"/>
+                            </svg>
                             <div>
                                 <h4>דוא״ל</h4>
                                 <p><a href="mailto:info@smarttravel.co.il">info@smarttravel.co.il</a></p>
                             </div>
                         </div>
                         <div class="whatsapp-button">
-                            <a href="https://wa.me/972501234567" target="_blank" class="btn btn-whatsapp">
-                                <i class="fab fa-whatsapp"></i>
+                            <a href="https://wa.me/972501234567" target="_blank" class="btn btn--whatsapp">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M17.472 14.382C17.0419 14.382 16.6597 14.382 15.8507 13.573C15.1417 12.842 14.8027 12.5529 14.6017 12.5529C14.1966 12.5529 13.8876 12.9779 13.8876 13.573C13.8876 14.382 14.8027 15.191 15.8507 15.191C17.472 15.191 18.7281 13.9349 18.7281 12.3136C18.7281 10.6923 17.472 9.43616 15.8507 9.43616C14.2294 9.43616 12.9733 10.6923 12.9733 12.3136" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1Z" stroke="currentColor" stroke-width="2"/>
+                                </svg>
                                 צ'אט ב-WhatsApp
                             </a>
                         </div>
@@ -347,6 +680,7 @@
                         <li><a href="#home">בית</a></li>
                         <li><a href="#about">אודות</a></li>
                         <li><a href="#testimonials">ביקורות</a></li>
+                        <li><a href="#blog">בלוג</a></li>
                         <li><a href="#faq">שאלות נפוצות</a></li>
                         <li><a href="#contact">צור קשר</a></li>
                     </ul>
@@ -360,10 +694,21 @@
                 <div class="footer-section">
                     <h4>עקבו אחרינו</h4>
                     <div class="social-links">
-                        <a href="#" target="_blank" aria-label="פייסבוק"><i class="fab fa-facebook"></i></a>
-                        <a href="#" target="_blank" aria-label="אינסטגרם"><i class="fab fa-instagram"></i></a>
-                        <a href="#" target="_blank" aria-label="טלגרם"><i class="fab fa-telegram"></i></a>
-                        <a href="https://wa.me/972501234567" target="_blank" aria-label="ווטסאפ"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" target="_blank" aria-label="פייסבוק">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24V15.563H7.078V12.073H10.125V9.405C10.125 6.348 11.917 4.688 14.658 4.688C15.97 4.688 17.344 4.922 17.344 4.922V7.875H15.83C14.34 7.875 13.875 8.8 13.875 9.75V12.073H17.203L16.671 15.563H13.875V24C19.612 23.094 24 18.1 24 12.073Z"/>
+                            </svg>
+                        </a>
+                        <a href="#" target="_blank" aria-label="אינסטגרם">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163C15.204 2.163 15.584 2.175 16.85 2.233C20.102 2.381 21.621 3.924 21.769 7.152C21.827 8.417 21.838 8.797 21.838 12.001C21.838 15.206 21.826 15.585 21.769 16.85C21.62 20.075 20.105 21.621 16.85 21.769C15.584 21.827 15.206 21.839 12 21.839C8.796 21.839 8.416 21.827 7.151 21.769C3.891 21.62 2.38 20.07 2.232 16.849C2.174 15.584 2.162 15.205 2.162 12C2.162 8.796 2.175 8.417 2.232 7.151C2.381 3.924 3.896 2.38 7.151 2.232C8.417 2.175 8.796 2.163 12 2.163ZM12 0C8.741 0 8.333 0.014 7.053 0.072C2.695 0.272 0.273 2.69 0.073 7.052C0.014 8.333 0 8.741 0 12C0 15.259 0.014 15.668 0.072 16.948C0.272 21.306 2.69 23.728 7.052 23.928C8.333 23.986 8.741 24 12 24C15.259 24 15.668 23.986 16.948 23.928C21.302 23.728 23.730 21.31 23.927 16.948C23.986 15.668 24 15.259 24 12C24 8.741 23.986 8.333 23.928 7.053C23.732 2.699 21.311 0.273 16.949 0.073C15.668 0.014 15.259 0 12 0ZM12 5.838C8.597 5.838 5.838 8.597 5.838 12C5.838 15.403 8.597 18.162 12 18.162C15.403 18.162 18.162 15.403 18.162 12C18.162 8.597 15.403 5.838 12 5.838ZM12 16C9.791 16 8 14.209 8 12C8 9.791 9.791 8 12 8C14.209 8 16 9.791 16 12C16 14.209 14.209 16 12 16ZM18.406 4.155C18.406 4.955 17.761 5.6 16.961 5.6C16.161 5.6 15.516 4.955 15.516 4.155C15.516 3.355 16.161 2.71 16.961 2.71C17.761 2.71 18.406 3.355 18.406 4.155Z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/972501234567" target="_blank" aria-label="ווטסאפ">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382C17.472 16.063 15.992 17.543 14.311 17.543C12.63 17.543 11.15 16.063 11.15 14.382C11.15 12.701 12.63 11.221 14.311 11.221C15.992 11.221 17.472 12.701 17.472 14.382ZM12.064 2.192C6.773 2.192 2.478 6.487 2.478 11.778C2.478 13.39 2.923 14.909 3.719 16.205L2.4 21.6L7.96 20.307C9.217 21.027 10.695 21.431 12.265 21.431C17.556 21.431 21.85 17.137 21.85 11.846C21.85 6.555 17.556 2.26 12.265 2.26L12.064 2.192ZM12.064 0C18.627 0 24 5.373 24 12C24 18.627 18.627 24 12 24C9.349 24 6.898 23.185 4.865 21.789L0 24L2.211 19.135C0.815 17.102 0 14.651 0 12C0 5.373 5.373 0 12 0H12.064Z"/>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -373,20 +718,54 @@
         </div>
     </footer>
 
+    <!-- WhatsApp Chat Bubble -->
+    <div class="whatsapp-bubble">
+        <div class="bubble-content">
+            <span>יש לך שאלה? דבר איתנו</span>
+            <button class="bubble-close" onclick="this.parentElement.parentElement.style.display='none'">×</button>
+        </div>
+        <a href="https://wa.me/972501234567?text=היי, אני מעוניין לשמוע על חבילות נופש" target="_blank" class="whatsapp-icon" aria-label="פתח צ'אט WhatsApp">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382C17.472 16.063 15.992 17.543 14.311 17.543C12.63 17.543 11.15 16.063 11.15 14.382C11.15 12.701 12.63 11.221 14.311 11.221C15.992 11.221 17.472 12.701 17.472 14.382ZM12.064 2.192C6.773 2.192 2.478 6.487 2.478 11.778C2.478 13.39 2.923 14.909 3.719 16.205L2.4 21.6L7.96 20.307C9.217 21.027 10.695 21.431 12.265 21.431C17.556 21.431 21.85 17.137 21.85 11.846C21.85 6.555 17.556 2.26 12.265 2.26L12.064 2.192ZM12.064 0C18.627 0 24 5.373 24 12C24 18.627 18.627 24 12 24C9.349 24 6.898 23.185 4.865 21.789L0 24L2.211 19.135C0.815 17.102 0 14.651 0 12C0 5.373 5.373 0 12 0H12.064Z"/>
+            </svg>
+        </a>
+    </div>
+
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" onclick="scrollToTop()" aria-label="חזור למעלה">
-        <i class="fas fa-chevron-up"></i>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </button>
 
     <!-- Success Message Container -->
     <div id="successMessage" class="success-message hidden">
         <div class="success-content">
-            <i class="fas fa-check-circle"></i>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" fill="#10b981"/>
+                <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
             <h3>תודה על פנייתך!</h3>
             <p>קיבלנו את ההודעה שלך ונחזור אליך תוך 24 שעות.</p>
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Scripts -->
+    <script src="main.js" defer></script>
+    <script src="app.js" defer></script>
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

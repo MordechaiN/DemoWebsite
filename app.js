@@ -1,631 +1,629 @@
-// Smart Travel Website - Clean & Simple JavaScript
+// Blog Management System for Smart Travel Website
+// This script handles dynamic blog post loading and rendering
 
 document.addEventListener('DOMContentLoaded', function() {
-    initializeWebsite();
+    initializeBlog();
 });
 
-function initializeWebsite() {
-    initMobileNavigation();
-    initScrollEffects();
-    initAdvancedFormHandling();
-    initFAQAccordion();
-    initSmoothScrolling();
-    initAccessibility();
-    initImageLazyLoading();
+function initializeBlog() {
+    loadBlogPosts();
+    setupBlogNavigation();
+    initializeBlogSearch();
 }
 
-// Mobile Navigation
-function initMobileNavigation() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    if (navToggle && navMenu) {
-        navToggle.addEventListener('click', function() {
-            navToggle.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!navToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                navToggle.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    }
-}
-
-// Smooth Scrolling
-function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight - 20;
+// Blog posts data (normally would be loaded from blog.json)
+const blogPosts = [
+    {
+        id: 'smart-vacation-tips',
+        title: '5 טיפים לחופשה חכמה וחסכונית',
+        excerpt: 'איך לתכנן חופשה מושלמת בלי לפוצץ את התקציב? כאן תמצאו את כל הטיפים החשובים לחופשה חסכונית ומהנה.',
+        content: `
+            <article class="blog-article">
+                <h1>5 טיפים לחופשה חכמה וחסכונית</h1>
                 
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-}
+                <div class="article-meta">
+                    <span class="author">מאת: צוות Smart Travel</span>
+                    <span class="date">תאריך: 15 בינואר 2025</span>
+                </div>
 
-// Scroll to section function (used by buttons)
-function scrollToSection(sectionId) {
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        const headerHeight = document.querySelector('.header').offsetHeight;
-        const targetPosition = targetSection.offsetTop - headerHeight - 20;
-        
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
+                <div class="article-content">
+                    <p>תכנון חופשה לא חייב לפוצץ את התקציב שלכם. עם הטיפים הנכונים, תוכלו ליהנות מחופשה מדהימה במחירים שפויים.</p>
+
+                    <h2>1. תכננו מראש ובצעו השוואת מחירים</h2>
+                    <p>ככל שתזמינו מוקדם יותר, כך תחסכו יותר כסף. השוואת מחירים בין אתרים שונים חיונית - לעיתים ההפרש יכול להגיע למאות שקלים.</p>
+
+                    <h2>2. היו גמישים עם התאריכים</h2>
+                    <p>נסיעה באמצע השבוע או מחוץ לעונה תמיד זולה יותר. השתמשו בכלים של חיפוש טיסות גמישות כדי למצוא את המחירים הטובים ביותר.</p>
+
+                    <h2>3. שקלו יעדים חלופיים</h2>
+                    <p>במקום פריז, נסו ליון. במקום רומא, שקלו נאפולי. יעדים פחות פופולאריים מציעים חוויה אותנטית במחירים נמוכים יותר.</p>
+
+                    <h2>4. חפשו חבילות משולבות</h2>
+                    <p>לרוב, הזמנת טיסה ומלון יחד חוסכת כסף משמעותי. בדקו את האפשרויות השונות ובחרו את החבילה המתאימה לכם.</p>
+
+                    <h2>5. היעזרו במומחים</h2>
+                    <p>סוכן נסיעות מקצועי יודע איפה למצוא את המבצעים הטובים ביותר ויכול לחסוך לכם זמן וכסף רב.</p>
+
+                    <div class="article-cta">
+                        <h3>מעוניינים בעזרה בתכנון החופשה?</h3>
+                        <p>צוות המומחים שלנו ב-Smart Travel יעזור לכם למצוא את החופשה המושלמת במחיר שמתאים לכם.</p>
+                        <button class="btn btn--primary" onclick="scrollToSection('contact')">צור קשר עכשיו</button>
+                    </div>
+                </div>
+            </article>
+        `,
+        image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=200&fit=crop',
+        url: 'article.html?slug=smart-vacation-tips',
+        date: '2025-01-15',
+        author: 'צוות Smart Travel',
+        tags: ['טיפים', 'חיסכון', 'תכנון']
+    },
+    {
+        id: 'flight-booking-secrets',
+        title: 'סודות הזמנת טיסות: מתי ואיך לקנות',
+        excerpt: 'מתי הזמן הטוב ביותר להזמין טיסות? איך למצוא את המחירים הטובים ביותר? כל הסודות כאן.',
+        content: `
+            <article class="blog-article">
+                <h1>סודות הזמנת טיסות: מתי ואיך לקנות</h1>
+                
+                <div class="article-meta">
+                    <span class="author">מאת: דנה כהן</span>
+                    <span class="date">תאריך: 12 בינואר 2025</span>
+                </div>
+
+                <div class="article-content">
+                    <p>עולם הזמנת הטיסות מלא בסודות וטריקים שיכולים לחסוך לכם מאות או אפילו אלפי שקלים. הנה המדריך המלא שלנו.</p>
+
+                    <h2>מתי להזמין?</h2>
+                    <p><strong>לטיסות פנימיות:</strong> 1-2 חודשים מראש<br>
+                    <strong>לטיסות לאירופה:</strong> 2-3 חודשים מראש<br>
+                    <strong>לטיסות למזרח הרחוק:</strong> 3-4 חודשים מראש</p>
+
+                    <h2>באיזה יום בשבוע כדאי לטוס?</h2>
+                    <p>יום שלישי ורביעי הם הימים הזולים ביותר לטיסות. הימנעו מטיסות בסוף השבוע - הן יקרות משמעותיות יותר.</p>
+
+                    <h2>השעות הטובות ביותר</h2>
+                    <p>טיסות מוקדמות בבוקר או מאוחרות בערב זולות יותר. הימנעו מטיסות בשעות הפופולאריות (10:00-14:00).</p>
+
+                    <h2>טריקים לחיפוש</h2>
+                    <ul>
+                        <li>השתמשו במצב גלישה פרטית בדפדפן</li>
+                        <li>נקו את המטמון והעוגיות</li>
+                        <li>חפשו גם ביעדים סמוכים</li>
+                        <li>בדקו טיסות עם הקפות</li>
+                        <li>השוו מחירים במטבעות שונים</li>
+                    </ul>
+
+                    <h2>התזמון המושלם</h2>
+                    <p>הזמינו טיסות ביום שלישי בין השעות 15:00-18:00. זהו התזמון הסטטיסטי הטוב ביותר לקבלת מחירים נמוכים.</p>
+
+                    <div class="article-tips">
+                        <h3>💡 טיפ מקצועי</h3>
+                        <p>אל תחכו לרגע האחרון! מחירי הטיסות עולים בחדות בשבועיים האחרונים לפני המועד המבוקש.</p>
+                    </div>
+
+                    <div class="article-cta">
+                        <h3>צריכים עזרה בחיפוש הטיסה המושלמת?</h3>
+                        <p>המומחים שלנו יבדקו עבורכם את כל האפשרויות וימצאו את המחיר הטוב ביותר.</p>
+                        <button class="btn btn--primary" onclick="scrollToSection('contact')">בקש הצעת מחיר</button>
+                    </div>
+                </div>
+            </article>
+        `,
+        image: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=200&fit=crop',
+        url: 'article.html?slug=flight-booking-secrets',
+        date: '2025-01-12',
+        author: 'דנה כהן',
+        tags: ['טיסות', 'חיסכון', 'הזמנות']
+    },
+    {
+        id: 'travel-insurance-guide',
+        title: 'מדריך ביטוח נסיעות: הכל שצריך לדעת',
+        excerpt: 'ביטוח נסיעות - האם באמת צריך? איזה סוגי ביטוח קיימים ואיך לבחור את הביטוח הנכון עבורכם.',
+        content: `
+            <article class="blog-article">
+                <h1>מדריך ביטוח נסיעות: הכל שצריך לדעת</h1>
+                
+                <div class="article-meta">
+                    <span class="author">מאת: צוות Smart Travel</span>
+                    <span class="date">תאריך: 8 בינואר 2025</span>
+                </div>
+
+                <div class="article-content">
+                    <p>ביטוח נסיעות הוא אחד הדברים החשובים ביותר שאסור לוותר עליהם בנסיעה לחו"ל. הנה המדריך המלא.</p>
+
+                    <h2>למה צריך ביטוח נסיעות?</h2>
+                    <p>ביטוח נסיעות מכסה אתכם במגוון מצבים:</p>
+                    <ul>
+                        <li>טיפול רפואי חירום</li>
+                        <li>ביטול או קיצור הטיול</li>
+                        <li>אובדן או גניבת מזווודות</li>
+                        <li>פיצוי על איחור טיסות</li>
+                        <li>אחריות אזרחית כלפי צד שלישי</li>
+                    </ul>
+
+                    <h2>סוגי ביטוח נסיעות</h2>
+                    
+                    <h3>ביטוח בסיסי</h3>
+                    <p>מכסה טיפול רפואי חירום ופינוי רפואי. זהו המינימום הנדרש לכל נסיעה.</p>
+
+                    <h3>ביטוח מקיף</h3>
+                    <p>מכסה גם ביטול נסיעה, מזוודות ואחריות אזרחית. מומלץ לרוב המטיילים.</p>
+
+                    <h3>ביטוח למטיילים תכופים</h3>
+                    <p>ביטוח שנתי המכסה מספר נסיעות. חסכוני למי שנוסע הרבה.</p>
+
+                    <h2>כמה עולה?</h2>
+                    <p>ביטוח נסיעות עולה בין 2%-5% ממחיר הטיול. השקעה קטנה שיכולה לחסוך אלפי שקלים.</p>
+
+                    <h2>על מה לשים לב בפוליסה?</h2>
+                    <ul>
+                        <li><strong>גובה הכיסוי:</strong> לפחות 50,000$ לטיפול רפואי</li>
+                        <li><strong>מחלות קיימות:</strong> האם מכוסות?</li>
+                        <li><strong>פעילויות ספורט:</strong> האם נכללות?</li>
+                        <li><strong>תקופת ההמתנה:</strong> מתי הביטוח נכנס לתוקף?</li>
+                    </ul>
+
+                    <div class="article-warning">
+                        <h3>⚠️ חשוב לזכור</h3>
+                        <p>אל תוותרו על ביטוח נסיעות! גם אם אתם בריאים וצעירים - תאונות קורות והטיפול הרפואי בחו"ל יקר מאוד.</p>
+                    </div>
+
+                    <div class="article-cta">
+                        <h3>רוצים ייעוץ בבחירת ביטוח נסיעות?</h3>
+                        <p>המומחים שלנו יעזרו לכם לבחור את הביטוח המתאים ביותר לסוג הנסיעה שלכם.</p>
+                        <button class="btn btn--primary" onclick="scrollToSection('contact')">קבל ייעוץ חינם</button>
+                    </div>
+                </div>
+            </article>
+        `,
+        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=200&fit=crop',
+        url: 'article.html?slug=travel-insurance-guide',
+        date: '2025-01-08',
+        author: 'צוות Smart Travel',
+        tags: ['ביטוח', 'טיפים', 'בטיחות']
     }
-}
+];
 
-// Scroll Effects
-function initScrollEffects() {
-    const backToTopBtn = document.getElementById('backToTop');
+function loadBlogPosts() {
+    const blogGrid = document.getElementById('blog-grid');
     
-    const optimizedScrollHandler = debounce(function() {
-        // Show/hide back to top button
-        if (window.pageYOffset > 300) {
-            backToTopBtn.classList.add('visible');
+    if (!blogGrid) {
+        console.log('Blog grid not found');
+        return;
+    }
+
+    // Clear existing content
+    blogGrid.innerHTML = '';
+
+    // Load blog posts
+    try {
+        if (blogPosts && blogPosts.length > 0) {
+            renderBlogPosts(blogPosts.slice(0, 3)); // Show only first 3 posts
         } else {
-            backToTopBtn.classList.remove('visible');
+            showNoBlogPosts();
         }
-    }, 100);
-
-    window.addEventListener('scroll', optimizedScrollHandler);
+    } catch (error) {
+        console.error('Error loading blog posts:', error);
+        showBlogError();
+    }
 }
 
-// Back to Top functionality
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+function renderBlogPosts(posts) {
+    const blogGrid = document.getElementById('blog-grid');
+    
+    posts.forEach((post, index) => {
+        const blogCard = createBlogCard(post, index);
+        blogGrid.appendChild(blogCard);
     });
-}
 
-// Enhanced FAQ Accordion with smooth animations
-function initFAQAccordion() {
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    
-    faqQuestions.forEach(question => {
-        question.addEventListener('click', function(e) {
-            e.preventDefault();
-            const faqItem = this.closest('.faq-item');
-            const faqAnswer = faqItem.querySelector('.faq-answer');
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all FAQ items with smooth animation
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove('active');
-                    const answer = item.querySelector('.faq-answer');
-                    const btn = item.querySelector('.faq-question');
-                    if (answer && btn) {
-                        answer.style.maxHeight = '0px';
-                        btn.setAttribute('aria-expanded', 'false');
-                    }
-                }
-            });
-            
-            // Toggle clicked item with smooth animation
-            if (!isActive && faqAnswer) {
-                faqItem.classList.add('active');
-                faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
-                this.setAttribute('aria-expanded', 'true');
-            } else {
-                faqItem.classList.remove('active');
-                faqAnswer.style.maxHeight = '0px';
-                this.setAttribute('aria-expanded', 'false');
-            }
-        });
-        
-        // Set initial aria-expanded state
-        question.setAttribute('aria-expanded', 'false');
-    });
-}
-
-// Global FAQ toggle function for onclick handlers
-function toggleFAQ(button) {
-    const faqItem = button.closest('.faq-item');
-    const faqAnswer = faqItem.querySelector('.faq-answer');
-    const isActive = faqItem.classList.contains('active');
-    
-    // Close all FAQ items
-    document.querySelectorAll('.faq-item').forEach(item => {
-        if (item !== faqItem) {
-            item.classList.remove('active');
-            const answer = item.querySelector('.faq-answer');
-            const btn = item.querySelector('.faq-question');
-            if (answer && btn) {
-                answer.style.maxHeight = '0px';
-                btn.setAttribute('aria-expanded', 'false');
-            }
-        }
-    });
-    
-    // Toggle clicked item
-    if (!isActive && faqAnswer) {
-        faqItem.classList.add('active');
-        faqAnswer.style.maxHeight = faqAnswer.scrollHeight + 'px';
-        button.setAttribute('aria-expanded', 'true');
-    } else {
-        faqItem.classList.remove('active');
-        faqAnswer.style.maxHeight = '0px';
-        button.setAttribute('aria-expanded', 'false');
-    }
-}
-
-// Advanced Form Handling with Real-time Validation
-function initAdvancedFormHandling() {
-    const contactForm = document.getElementById('contactForm');
-    
-    if (contactForm) {
-        // Add real-time validation to each field
-        const nameField = document.getElementById('name');
-        const phoneField = document.getElementById('phone');
-        const emailField = document.getElementById('email');
-        const messageField = document.getElementById('message');
-
-        if (nameField) {
-            nameField.addEventListener('input', validateName);
-            nameField.addEventListener('blur', validateName);
-        }
-
-        if (phoneField) {
-            phoneField.addEventListener('input', validatePhone);
-            phoneField.addEventListener('blur', validatePhone);
-        }
-
-        if (emailField) {
-            emailField.addEventListener('input', validateEmail);
-            emailField.addEventListener('blur', validateEmail);
-        }
-
-        if (messageField) {
-            messageField.addEventListener('input', validateMessage);
-            messageField.addEventListener('blur', validateMessage);
-        }
-
-        // Handle form submission
-        contactForm.addEventListener('submit', handleContactFormSubmission);
-    }
-}
-
-// Individual field validation functions
-function validateName() {
-    const nameField = document.getElementById('name');
-    const errorElement = document.getElementById('name-error');
-    const name = nameField.value.trim();
-    
-    if (name.length < 2) {
-        showFieldError(nameField, errorElement, 'אנא הזן שם מלא (לפחות 2 תווים)');
-        return false;
-    } else if (name.length > 50) {
-        showFieldError(nameField, errorElement, 'השם ארוך מדי (מקסימום 50 תווים)');
-        return false;
-    } else {
-        showFieldSuccess(nameField, errorElement);
-        return true;
-    }
-}
-
-function validatePhone() {
-    const phoneField = document.getElementById('phone');
-    const errorElement = document.getElementById('phone-error');
-    const phone = phoneField.value.trim();
-    
-    // Remove all non-digit characters for validation
-    const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-    
-    // Israeli phone number patterns (more flexible)
-    const patterns = [
-        /^05[0-9]\d{7}$/, // Mobile: 050xxxxxxx, 052xxxxxxx, etc.
-        /^07[2-9]\d{7}$/, // VoIP: 072xxxxxxx, 073xxxxxxx, etc.
-        /^0[234589]\d{7}$/, // Landline: 02xxxxxxx, 03xxxxxxx, etc.
-        /^97205[0-9]\d{7}$/, // International mobile: 97250xxxxxxx
-        /^97207[2-9]\d{7}$/, // International VoIP
-        /^9720[234589]\d{7}$/ // International landline
-    ];
-    
-    if (!phone) {
-        showFieldError(phoneField, errorElement, 'אנא הזן מספר טלפון');
-        return false;
-    } else if (cleanPhone.length < 9 || cleanPhone.length > 13) {
-        showFieldError(phoneField, errorElement, 'מספר טלפון לא תקין');
-        return false;
-    } else if (!patterns.some(pattern => pattern.test(cleanPhone))) {
-        showFieldError(phoneField, errorElement, 'אנא הזן מספר טלפון ישראלי תקין (דוגמה: 050-1234567)');
-        return false;
-    } else {
-        showFieldSuccess(phoneField, errorElement);
-        return true;
-    }
-}
-
-function validateEmail() {
-    const emailField = document.getElementById('email');
-    const errorElement = document.getElementById('email-error');
-    const email = emailField.value.trim();
-    
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!email) {
-        showFieldError(emailField, errorElement, 'אנא הזן כתובת דוא״ל');
-        return false;
-    } else if (!emailRegex.test(email)) {
-        showFieldError(emailField, errorElement, 'אנא הזן כתובת דוא״ל תקינה');
-        return false;
-    } else {
-        showFieldSuccess(emailField, errorElement);
-        return true;
-    }
-}
-
-function validateMessage() {
-    const messageField = document.getElementById('message');
-    const errorElement = document.getElementById('message-error');
-    const message = messageField.value.trim();
-    
-    if (message.length < 10) {
-        showFieldError(messageField, errorElement, 'ההודעה קצרה מדי (לפחות 10 תווים)');
-        return false;
-    } else if (message.length > 1000) {
-        showFieldError(messageField, errorElement, 'ההודעה ארוכה מדי (מקסימום 1000 תווים)');
-        return false;
-    } else {
-        showFieldSuccess(messageField, errorElement);
-        return true;
-    }
-}
-
-function showFieldError(field, errorElement, message) {
-    field.classList.remove('success');
-    field.classList.add('error');
-    if (errorElement) {
-        errorElement.textContent = message;
-        errorElement.classList.add('show');
-    }
-}
-
-function showFieldSuccess(field, errorElement) {
-    field.classList.remove('error');
-    field.classList.add('success');
-    if (errorElement) {
-        errorElement.classList.remove('show');
-    }
-}
-
-function handleContactFormSubmission(e) {
-    e.preventDefault();
-    
-    // Validate all fields
-    const isNameValid = validateName();
-    const isPhoneValid = validatePhone();
-    const isEmailValid = validateEmail();
-    const isMessageValid = validateMessage();
-    
-    if (isNameValid && isPhoneValid && isEmailValid && isMessageValid) {
-        // Simulate form submission
-        const submitButton = e.target.querySelector('button[type="submit"]');
-        const originalText = submitButton.innerHTML;
-        
-        // Show loading state
-        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
-        submitButton.disabled = true;
-        
-        // Simulate API call delay
-        setTimeout(() => {
-            // Show success message
-            showSuccessMessage();
-            
-            // Reset form
-            e.target.reset();
-            
-            // Reset all field states
-            const fields = e.target.querySelectorAll('.form-control');
-            fields.forEach(field => {
-                field.classList.remove('error', 'success');
-            });
-            
-            // Reset button
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
-            
-        }, 1500); // Simulate network delay
-        
-    } else {
-        // Show error message
-        showErrorMessage('אנא תקן את השגיאות בטופס');
-    }
-}
-
-function showSuccessMessage() {
-    const successMessage = document.getElementById('successMessage');
-    if (successMessage) {
-        successMessage.classList.remove('hidden');
-        
-        // Auto hide after 4 seconds
-        setTimeout(() => {
-            successMessage.classList.add('hidden');
-        }, 4000);
-        
-        // Allow manual close by clicking outside
-        successMessage.addEventListener('click', function(e) {
-            if (e.target === successMessage) {
-                successMessage.classList.add('hidden');
-            }
-        });
-    }
-}
-
-function showErrorMessage(message) {
-    // Remove existing error messages
-    const existingErrors = document.querySelectorAll('.error-toast');
-    existingErrors.forEach(error => error.remove());
-    
-    // Create error message element
-    const errorEl = document.createElement('div');
-    errorEl.className = 'error-toast';
-    errorEl.innerHTML = `
-        <div class="error-content">
-            <i class="fas fa-exclamation-triangle"></i>
-            <span>${message}</span>
-        </div>
-        <button class="error-close" onclick="this.parentElement.remove()">×</button>
-    `;
-    
-    // Add styles
-    errorEl.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: #ef4444;
-        color: white;
-        padding: 16px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        z-index: 3000;
-        max-width: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        animation: slideInRight 0.3s ease-out;
-    `;
-    
-    // Add animation styles if not exists
-    if (!document.querySelector('#errorToastStyles')) {
-        const style = document.createElement('style');
-        style.id = 'errorToastStyles';
-        style.textContent = `
-            @keyframes slideInRight {
-                from { transform: translateX(100%); opacity: 0; }
-                to { transform: translateX(0); opacity: 1; }
-            }
-            @keyframes slideOutRight {
-                from { transform: translateX(0); opacity: 1; }
-                to { transform: translateX(100%); opacity: 0; }
-            }
-            .error-content {
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-            .error-close {
-                background: none;
-                border: none;
-                color: white;
-                font-size: 18px;
-                cursor: pointer;
-                padding: 4px;
-                opacity: 0.8;
-            }
-            .error-close:hover {
-                opacity: 1;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-    
-    // Add to page
-    document.body.appendChild(errorEl);
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (errorEl.parentElement) {
-            errorEl.style.animation = 'slideOutRight 0.3s ease-out forwards';
-            setTimeout(() => errorEl.remove(), 300);
-        }
-    }, 5000);
-}
-
-// Lazy Loading for Images (future-proof)
-function initImageLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
-    
+    // Initialize animations for the new blog cards
     if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
+        const blogCards = blogGrid.querySelectorAll('.blog-card');
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         });
 
-        images.forEach(img => imageObserver.observe(img));
-    } else {
-        // Fallback for older browsers
-        images.forEach(img => {
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
+        blogCards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease-out ${index * 0.2}s, transform 0.6s ease-out ${index * 0.2}s`;
+            observer.observe(card);
         });
     }
 }
 
-// Accessibility Improvements
-function initAccessibility() {
-    // Add skip link functionality
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main';
-    skipLink.textContent = 'דלג לתוכן הראשי';
-    skipLink.className = 'skip-link';
-    skipLink.style.cssText = `
-        position: absolute;
-        top: -40px;
-        right: 6px;
-        background: #000;
-        color: white;
-        padding: 8px 16px;
-        text-decoration: none;
-        z-index: 10000;
-        border-radius: 4px;
-        font-weight: bold;
-        transition: top 0.2s;
-    `;
+function createBlogCard(post, index) {
+    const article = document.createElement('article');
+    article.className = 'blog-card';
+    article.setAttribute('data-post-id', post.id);
     
-    skipLink.addEventListener('focus', function() {
-        this.style.top = '6px';
-    });
-    
-    skipLink.addEventListener('blur', function() {
-        this.style.top = '-40px';
-    });
-    
-    document.body.insertBefore(skipLink, document.body.firstChild);
+    // Create image element with error handling
+    const imageHtml = post.image ? 
+        `<img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x200/e2e8f0/64748b?text=מאמר'">`
+        : `<div class="placeholder-image" style="display: flex; align-items: center; justify-content: center; background: var(--color-light-bg); color: var(--color-text-secondary);">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 19l3.5-4.5 2.5 3.01L14.5 12l4.5 7H5z" fill="currentColor"/>
+            </svg>
+           </div>`;
 
-    // Ensure proper focus management
-    const focusableElements = document.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-    );
-    
-    // Improve keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        // Close success message on Escape
-        if (e.key === 'Escape') {
-            const successMessage = document.getElementById('successMessage');
-            if (successMessage && !successMessage.classList.contains('hidden')) {
-                successMessage.classList.add('hidden');
+    article.innerHTML = `
+        <div class="blog-image">
+            ${imageHtml}
+        </div>
+        <div class="blog-content">
+            <h3 class="blog-title">${post.title}</h3>
+            <p class="blog-excerpt">${post.excerpt}</p>
+            <div class="blog-meta">
+                <span class="blog-date">${formatDate(post.date)}</span>
+                <span class="blog-author">מאת: ${post.author}</span>
+            </div>
+            <a href="#" class="blog-read-more" onclick="openBlogPost('${post.id}'); return false;" role="button">
+                קרא עוד
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 12h14m-7-7l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    `;
+
+    // Add hover effects
+    article.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+    });
+
+    article.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+
+    return article;
+}
+
+function openBlogPost(postId) {
+    const post = blogPosts.find(p => p.id === postId);
+    if (!post) {
+        console.error('Post not found:', postId);
+        return;
+    }
+
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'blog-modal';
+    modal.innerHTML = `
+        <div class="blog-modal-overlay" onclick="closeBlogModal()"></div>
+        <div class="blog-modal-content">
+            <button class="blog-modal-close" onclick="closeBlogModal()" aria-label="סגור מאמר">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="blog-modal-body">
+                ${post.content}
+            </div>
+        </div>
+    `;
+
+    // Add modal styles
+    const modalStyles = `
+        <style>
+        .blog-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .blog-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+        
+        .blog-modal-content {
+            position: relative;
+            background: var(--color-white);
+            border-radius: 1rem;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            margin: 2rem;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        .blog-modal-close {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--color-white);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-medium);
+            z-index: 1;
+            transition: var(--transition-fast);
+        }
+        
+        .blog-modal-close:hover {
+            background: var(--color-light-bg);
+            transform: scale(1.1);
+        }
+        
+        .blog-modal-body {
+            padding: 2rem;
+        }
+        
+        .blog-article h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-text-dark);
+        }
+        
+        .article-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border-light);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+        
+        .article-content h2 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--color-text-dark);
+        }
+        
+        .article-content h3 {
+            font-size: 1.25rem;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--color-text-dark);
+        }
+        
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.6;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-tips, .article-warning {
+            background: var(--color-light-bg);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+            border-right: 4px solid var(--color-primary-green);
+        }
+        
+        .article-warning {
+            border-right-color: #f59e0b;
+            background: #fef3c7;
+        }
+        
+        .article-cta {
+            background: linear-gradient(135deg, var(--color-primary-green), var(--color-primary-blue));
+            color: var(--color-white);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .article-cta h3 {
+            color: var(--color-white);
+            margin-bottom: 1rem;
+        }
+        
+        .article-cta p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    });
-}
-
-// Utility function to debounce events
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Smooth scroll animations on scroll
-function initScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+        
+        @media (max-width: 768px) {
+            .blog-modal-content {
+                margin: 1rem;
+                max-height: 95vh;
             }
-        });
-    }, observerOptions);
+            
+            .blog-modal-body {
+                padding: 1.5rem;
+            }
+            
+            .blog-article h1 {
+                font-size: 1.5rem;
+            }
+        }
+        </style>
+    `;
+
+    // Add styles to head if not exists
+    if (!document.querySelector('#blog-modal-styles')) {
+        const styleElement = document.createElement('div');
+        styleElement.id = 'blog-modal-styles';
+        styleElement.innerHTML = modalStyles;
+        document.head.appendChild(styleElement);
+    }
+
+    // Add modal to body
+    document.body.appendChild(modal);
     
-    // Observe elements that should animate
-    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .contact-form, .contact-info');
-    animatedElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
-        observer.observe(el);
-    });
-}
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+    
+    // Focus management for accessibility
+    const closeButton = modal.querySelector('.blog-modal-close');
+    if (closeButton) {
+        closeButton.focus();
+    }
 
-// Initialize scroll animations when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(initScrollAnimations, 200);
-});
-
-// Error handling for images
-function initImageErrorHandling() {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        img.addEventListener('error', function() {
-            console.warn('Failed to load image:', this.src);
-            // Could add a placeholder image here
-            this.style.opacity = '0.5';
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', initImageErrorHandling);
-
-// Performance monitoring (optional)
-function logPerformanceMetrics() {
-    if ('performance' in window) {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.log('Page Load Time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
-            }, 0);
-        });
+    // Track blog post view
+    if (window.SmartTravelApp && window.SmartTravelApp.trackEvent) {
+        window.SmartTravelApp.trackEvent('blog', 'post_view', postId);
     }
 }
 
-// Initialize performance monitoring
-document.addEventListener('DOMContentLoaded', logPerformanceMetrics);
-
-// Export functions for potential external use
-window.SmartTravelApp = {
-    scrollToSection,
-    toggleFAQ,
-    validateEmail: function(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    },
-    validateIsraeliPhone: function(phone) {
-        const cleanPhone = phone.replace(/[\s\-\(\)]/g, '');
-        const patterns = [
-            /^05[0-9]\d{7}$/, // Mobile
-            /^07[2-9]\d{7}$/, // VoIP
-            /^0[234589]\d{7}$/, // Landline
-            /^97205[0-9]\d{7}$/, // International mobile
-            /^97207[2-9]\d{7}$/, // International VoIP
-            /^9720[234589]\d{7}$/ // International landline
-        ];
-        return patterns.some(pattern => pattern.test(cleanPhone));
+// Global function to close blog modal
+window.closeBlogModal = function() {
+    const modal = document.querySelector('.blog-modal');
+    if (modal) {
+        modal.style.animation = 'fadeOut 0.3s ease-out forwards';
+        setTimeout(() => {
+            modal.remove();
+            document.body.style.overflow = '';
+        }, 300);
     }
 };
+
+function showNoBlogPosts() {
+    const blogGrid = document.getElementById('blog-grid');
+    blogGrid.innerHTML = `
+        <div class="no-blog-posts" style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: var(--color-light-bg); border-radius: 1rem;">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" style="margin: 0 auto 1rem auto; color: var(--color-text-secondary);">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="14,2 14,8 20,8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="10,9 9,9 8,9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3>בקרוב יתווספו מאמרים חדשים</h3>
+            <p>אנחנו עובדים על תוכן מעניין ושימושי עבורכם</p>
+        </div>
+    `;
+}
+
+function showBlogError() {
+    const blogGrid = document.getElementById('blog-grid');
+    blogGrid.innerHTML = `
+        <div class="blog-error" style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: #fef2f2; border-radius: 1rem; border: 1px solid #fecaca;">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" style="margin: 0 auto 1rem auto; color: #ef4444;">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2"/>
+                <line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <h3>שגיאה בטעינת המאמרים</h3>
+            <p>אנא נסו לרענן את הדף או חזרו מאוחר יותר</p>
+            <button class="btn btn--primary" onclick="loadBlogPosts()" style="margin-top: 1rem;">נסה שוב</button>
+        </div>
+    `;
+}
+
+function setupBlogNavigation() {
+    // Add blog navigation functionality if needed
+    const blogSection = document.getElementById('blog');
+    if (blogSection) {
+        // Add scroll-to-top functionality for blog section
+        const backToTopBtn = document.getElementById('backToTop');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function() {
+                blogSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    }
+}
+
+function initializeBlogSearch() {
+    // Future feature: blog search functionality
+    // This can be expanded to include search and filter capabilities
+    console.log('Blog search initialized (placeholder for future feature)');
+}
+
+// Utility Functions
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    
+    return date.toLocaleDateString('he-IL', options);
+}
+
+function truncateText(text, maxLength) {
+    if (text.length <= maxLength) return text;
+    return text.substr(0, maxLength).replace(/\s+\S*$/, '') + '...';
+}
+
+// Export functions for external use
+window.BlogManager = {
+    loadBlogPosts,
+    renderBlogPosts,
+    createBlogCard: function(post) {
+        return createBlogCard(post, 0);
+    },
+    openBlogPost,
+    closeBlogModal: window.closeBlogModal,
+    blogPosts: blogPosts
+};
+
+// Handle browser back/forward buttons for modal
+window.addEventListener('popstate', function(e) {
+    const modal = document.querySelector('.blog-modal');
+    if (modal) {
+        window.closeBlogModal();
+    }
+});
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.querySelector('.blog-modal');
+        if (modal) {
+            window.closeBlogModal();
+        }
+    }
+});
+
+// Add CSS animation for fade out
+const fadeOutStyle = document.createElement('style');
+fadeOutStyle.textContent = `
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+`;
+document.head.appendChild(fadeOutStyle);
