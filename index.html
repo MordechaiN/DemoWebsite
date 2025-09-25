@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Travel - הדרך החכמה לטייל בעולם</title>
-    <meta name="description" content="Smart Travel מציעה דילים בלעדיים וחופשות זולות לחו״ל. מחירים נגישים, שירות מקצועי ואמין. מצאו את החופשה שלכם עכשיו!">
-    <meta name="keywords" content="דילים לחו״ל, חופשות זולות, חבילות נופש, Smart Travel, סוכנות תיירות">
+    <meta name="description" content="Smart Travel - חופשות חלומיות במחירים נגישים. שירות אישי ומקצועי עם 5+ שנות ניסיון ו-5000+ לקוחות מרוצים.">
+    <meta name="keywords" content="Smart Travel, חופשות, נסיעות, סוכנות תיירות, ייעוץ נסיעות">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,9 +22,8 @@
                 <nav class="nav">
                     <ul class="nav-menu">
                         <li><a href="#home" class="nav-link">בית</a></li>
-                        <li><a href="#deals" class="nav-link">דילים חמים</a></li>
                         <li><a href="#about" class="nav-link">אודות</a></li>
-                        <li><a href="#testimonials" class="nav-link">המלצות</a></li>
+                        <li><a href="#testimonials" class="nav-link">ביקורות</a></li>
                         <li><a href="#faq" class="nav-link">שאלות נפוצות</a></li>
                         <li><a href="#contact" class="nav-link">צור קשר</a></li>
                     </ul>
@@ -38,92 +37,19 @@
         </div>
     </header>
 
-    <main>
+    <main id="main">
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-background">
-                <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/99b30d65-8add-4508-96e6-cb6ba6a1c087.png" alt="משפחה ישראלית נהנית בחופשה טרופית" class="hero-image">
                 <div class="hero-overlay"></div>
             </div>
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">הדרך החכמה לטייל בעולם</h1>
                     <p class="hero-subtitle">חופשות בלעדיות במחירים שתתקשו למצוא במקום אחר</p>
-                    <button class="btn btn-primary btn-large" onclick="scrollToSection('deals')">
-                        גלה את הדיל הבא שלך
+                    <button class="btn btn-primary btn-large" onclick="scrollToSection('contact')">
+                        בואו נתכנן יחד את החופשה שלכם
                     </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hot Deals Section -->
-        <section id="deals" class="deals">
-            <div class="container">
-                <div class="section-header">
-                    <h2>הדילים החמים שלנו</h2>
-                    <p>מבחר חבילות נופש בלעדיות במחירים מיוחדים</p>
-                </div>
-                <div class="deals-grid">
-                    <div class="deal-card">
-                        <div class="deal-image">
-                            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/0f8ed62f-e36b-4d75-9136-9ea5f632485a.png" alt="נוף רומנטי של סנטוריני, יוון">
-                        </div>
-                        <div class="deal-content">
-                            <h3>סנטוריני, יוון</h3>
-                            <p class="deal-description">חופשה רומנטית באי הקסום</p>
-                            <div class="deal-details">
-                                <span class="deal-duration">5 ימים</span>
-                                <span class="deal-includes">טיסה + מלון</span>
-                            </div>
-                            <div class="deal-price">₪2,990 לזוג</div>
-                            <button class="btn btn-outline" onclick="openBookingModal('סנטוריני')">הזמן עכשיו</button>
-                        </div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="deal-image">
-                            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/5a078d91-85e1-43d1-9e98-61054d0b58ec.png" alt="מגדל אייפל בפריז בערב רומנטי">
-                        </div>
-                        <div class="deal-content">
-                            <h3>פריז, צרפת</h3>
-                            <p class="deal-description">עיר האור והרומנטיקה</p>
-                            <div class="deal-details">
-                                <span class="deal-duration">4 ימים</span>
-                                <span class="deal-includes">טיסה + מלון</span>
-                            </div>
-                            <div class="deal-price">₪3,500 לזוג</div>
-                            <button class="btn btn-outline" onclick="openBookingModal('פריז')">הזמן עכשיו</button>
-                        </div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="deal-image">
-                            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/7009fcaa-e2ac-49be-b85c-cae3a2d6e9aa.png" alt="קו הרקיע המודרני של דובאי בשקיעה">
-                        </div>
-                        <div class="deal-content">
-                            <h3>דובאי, איחוד האמירויות</h3>
-                            <p class="deal-description">יוקרה מזרח תיכונית</p>
-                            <div class="deal-details">
-                                <span class="deal-duration">6 ימים</span>
-                                <span class="deal-includes">טיסה + מלון יוקרה</span>
-                            </div>
-                            <div class="deal-price">₪4,200 לזוג</div>
-                            <button class="btn btn-outline" onclick="openBookingModal('דובאי')">הזמן עכשיו</button>
-                        </div>
-                    </div>
-                    <div class="deal-card">
-                        <div class="deal-image">
-                            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/974b05f3-5e42-48b4-85ea-f1cf6e824fc0.png" alt="הכיכר ההיסטורית של פראג">
-                        </div>
-                        <div class="deal-content">
-                            <h3>פראג, צ'כיה</h3>
-                            <p class="deal-description">עיר הזהב של אירופה</p>
-                            <div class="deal-details">
-                                <span class="deal-duration">4 ימים</span>
-                                <span class="deal-includes">טיסה + מלון</span>
-                            </div>
-                            <div class="deal-price">₪2,800 לזוג</div>
-                            <button class="btn btn-outline" onclick="openBookingModal('פראג')">הזמן עכשיו</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -132,29 +58,36 @@
         <section class="why-us">
             <div class="container">
                 <div class="section-header">
-                    <h2>למה Smart Travel?</h2>
+                    <h2>למה לבחור ב-Smart Travel?</h2>
                 </div>
                 <div class="features-grid">
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            <i class="fas fa-shield-check"></i>
                         </div>
-                        <h3>אמינות ושירות אישי</h3>
-                        <p>צוות מנוסה ומקצועי שמלווה אתכם לאורך כל הדרך</p>
+                        <h3>מומחיות ואמינות</h3>
+                        <p>צוות מקצועי עם ניסיון עשיר בתכנון חופשות מושלמות</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-dollar-sign" aria-hidden="true"></i>
+                            <i class="fas fa-dollar-sign"></i>
                         </div>
-                        <h3>מחירים בלעדיים</h3>
-                        <p>קשרים ישירים עם ספקים מובילים ברחבי העולם</p>
+                        <h3>מחירים הוגנים</h3>
+                        <p>קשרים ישירים עם ספקים מובילים מבטיחים מחירים תחרותיים</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">
-                            <i class="fas fa-heart" aria-hidden="true"></i>
+                            <i class="fas fa-heart"></i>
                         </div>
-                        <h3>חופשות מותאמות</h3>
-                        <p>פתרונות גמישים למשפחות, זוגות ושומרי מסורת</p>
+                        <h3>שירות מותאם אישית</h3>
+                        <p>התאמה מלאה לצרכים האישיים שלכם ולתקציב</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h3>זמינות וליווי</h3>
+                        <p>תמיכה מקצועית לפני, במהלך ואחרי הטיול</p>
                     </div>
                 </div>
             </div>
@@ -166,11 +99,30 @@
                 <div class="about-content">
                     <div class="about-text">
                         <h2>מי אנחנו</h2>
-                        <p>מאז 2020, Smart Travel מציעה לישראלים חופשות חלומיות במחירים נגישים. בזכות קשרים בינלאומיים עם ספקי תיירות, אנחנו מביאים לכם מבצעים בלעדיים שלא תמצאו בשום מקום אחר.</p>
-                        <p>ב־Smart Travel אנחנו מאמינים שחופשה חלומית לא חייבת להיות יקרה. בזכות שיתופי פעולה בינלאומיים וניסיון עשיר – אנחנו מציעים לכם דילים ייחודיים במחיר שלא הכרתם.</p>
-                    </div>
-                    <div class="about-image">
-                        <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/d9c8814b-6529-41c0-96ec-417b56bc74e8.png" alt="צוות מקצועי ידידותי של סוכנות נסיעות">
+                        <p class="about-intro">מאז 2020, Smart Travel מציעה לישראלים חופשות חלומיות במחירים נגישים. בזכות קשרים בינלאומיים עם ספקי תיירות, אנחנו מביאים לכם מבצעים בלעדיים שלא תמצאו בשום מקום אחר.</p>
+                        
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <i class="fas fa-award"></i>
+                                <span>5+ שנות ניסיון בתחום התיירות</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-users"></i>
+                                <span>5000+ לקוחות מרוצים וממליצים</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-headset"></i>
+                                <span>שירות אישי ומקצועי לאורך כל הדרך</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="fas fa-hand-holding-dollar"></i>
+                                <span>מחירים הוגנים ושקופים ללא עמלות נסתרות</span>
+                            </div>
+                        </div>
+                        
+                        <p>אנחנו מאמינים שחופשה חלומית לא חייבת להיות יקרה. הצוות המנוסה שלנו עובד קשה כדי למצוא עבורכם את החבילות הטובות ביותר במחירים הכי נוחים.</p>
+                        
+                        <p>כל לקוח מקבל יחס אישי ומעקב מקצועי עד לרגע החזרה הביתה. אנחנו כאן כדי להפוך את החלום שלכם למציאות.</p>
                     </div>
                 </div>
             </div>
@@ -191,9 +143,10 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p>"חופשה נהדרת בסנטוריני! השירות היה מעולה והמחיר ממש הוגן"</p>
+                        <p>"חופשה מדהימה! השירות היה מעולה, הכל מסודר בפרפקט והמחיר הוגן. בהחלט נחזור שוב!"</p>
                         <div class="testimonial-author">
-                            <strong>רחל כהן</strong>
+                            <strong>רחל גולדשטיין</strong>
+                            <span>תל אביב</span>
                         </div>
                     </div>
                     <div class="testimonial-card">
@@ -204,9 +157,10 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p>"המלצתי לכל החברים - Smart Travel באמת מביאה את הדילים הכי טובים"</p>
+                        <p>"כבר השלישית פעם שמזמין דרך Smart Travel. הכי מקצועיים ואמינים שפגשתי!"</p>
                         <div class="testimonial-author">
-                            <strong>דוד לוי</strong>
+                            <strong>דוד רוזנבלום</strong>
+                            <span>ירושלים</span>
                         </div>
                     </div>
                     <div class="testimonial-card">
@@ -217,14 +171,26 @@
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                         </div>
-                        <p>"צוות מקצועי ואמין. ארגנו לנו חופשה מושלמת עם הילדים"</p>
+                        <p>"ארגנו לנו חופשה משפחתית מושלמת. הילדים נהנו מאוד והכל עבר בשקט מוחלט."</p>
                         <div class="testimonial-author">
-                            <strong>מרים אברהמי</strong>
+                            <strong>מרים שטיין</strong>
+                            <span>חיפה</span>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-outline" onclick="openContactModal()">השאר חוות דעת משלך</button>
+                    <div class="testimonial-card">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p>"מחירים הוגנים, שירות מעולה וחופשה בלתי נשכחת. ממליץ בחום לכל המכרים!"</p>
+                        <div class="testimonial-author">
+                            <strong>אבי נגר</strong>
+                            <span>באר שבע</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -237,30 +203,48 @@
                 </div>
                 <div class="faq-list">
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            האם המחיר כולל מסים?
-                            <i class="fas fa-chevron-down"></i>
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                            <span>האם המחירים כוללים את כל החרושות והמסים?</span>
+                            <i class="faq-icon fas fa-plus"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>כן, כל המחירים באתר כוללים מסים וחרושות נמל תעופה.</p>
+                            <p>כן, כל המחירים באתר כוללים מסים, חרושות נמל תעופה וביטוח נסיעות בסיסי. אין עמלות נסתרות.</p>
                         </div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            איך אני יודע שההזמנה בטוחה?
-                            <i class="fas fa-chevron-down"></i>
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                            <span>איך אני יודע שההזמנה שלי בטוחה?</span>
+                            <i class="faq-icon fas fa-plus"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>אנחנו עובדים עם חברות תעופה וקשת מלונות מוכרות ומהימנות. כל הזמנה מאושרת מיידית.</p>
+                            <p>אנחנו עובדים רק עם חברות תעופה וקשת מלונות מוכרות ומהימנות. כל הזמנה מתבצעת דרך מערכות בטוחות ומקבלת אישור תוך 24 שעות.</p>
                         </div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-question" onclick="toggleFAQ(this)">
-                            מה קורה במקרה של ביטול או שינוי?
-                            <i class="fas fa-chevron-down"></i>
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                            <span>מה קורה במקרה של ביטול או שינוי בהזמנה?</span>
+                            <i class="faq-icon fas fa-plus"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>לכל חבילה יש תנאי ביטול שונים. אנחנו עוזרים בכל התהליך ללא עמלות נוספות.</p>
+                            <p>לכל חבילה יש תנאי ביטול שונים בהתאם לספק. אנחנו מסייעים בכל תהליך הביטול או השינוי ללא עמלות נוספות מצידנו.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                            <span>האם אפשר לקבל תשלומים?</span>
+                            <i class="faq-icon fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>כן, אנחנו מציעים תשלומים עד 12 תשלומים ללא ריבית בכרטיסי אשראי מובילים (בכפוף לאישור חברת האשראי).</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFAQ(this)" aria-expanded="false">
+                            <span>איזה סוגי חבילות אתם מציעים?</span>
+                            <i class="faq-icon fas fa-plus"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>אנחנו מתמחים בחבילות טיסה+מלון לכל רחבי העולם, חופשות משפחתיות, נופשי זוגות רומנטיים וטיולים קבוצתיים מותאמים אישית.</p>
                         </div>
                     </div>
                 </div>
@@ -271,29 +255,46 @@
         <section id="contact" class="contact">
             <div class="container">
                 <div class="section-header">
-                    <h2>צור קשר</h2>
-                    <p>מוכנים לעזור לכם למצוא את החופשה המושלמת</p>
+                    <h2>בואו נתכנן יחד את החופשה הבאה שלכם</h2>
+                    <p>מלאו פרטים ונחזור אליכם תוך 24 שעות</p>
                 </div>
                 <div class="contact-content">
                     <div class="contact-form">
-                        <form id="contactForm">
+                        <form id="contactForm" novalidate>
                             <div class="form-group">
-                                <label for="name">שם מלא</label>
+                                <label for="name">שם מלא *</label>
                                 <input type="text" id="name" name="name" class="form-control" required>
+                                <div class="error-message" id="name-error"></div>
                             </div>
                             <div class="form-group">
-                                <label for="phone">טלפון</label>
-                                <input type="tel" id="phone" name="phone" class="form-control" required>
+                                <label for="phone">טלפון *</label>
+                                <input type="tel" id="phone" name="phone" class="form-control" placeholder="050-1234567" required>
+                                <div class="error-message" id="phone-error"></div>
                             </div>
                             <div class="form-group">
-                                <label for="email">דוא״ל</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
+                                <label for="email">דוא״ל *</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="example@email.com" required>
+                                <div class="error-message" id="email-error"></div>
                             </div>
                             <div class="form-group">
-                                <label for="message">הודעה</label>
-                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="ספרו לנו על החופשה שאתם מחפשים"></textarea>
+                                <label for="subject">נושא</label>
+                                <select id="subject" name="subject" class="form-control">
+                                    <option value="">בחר נושא</option>
+                                    <option value="vacation-planning">תכנון חופשה</option>
+                                    <option value="price-quote">בקשת הצעת מחיר</option>
+                                    <option value="general-inquiry">פנייה כללית</option>
+                                    <option value="existing-booking">הזמנה קיימת</option>
+                                </select>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-full-width">שלח הודעה</button>
+                            <div class="form-group">
+                                <label for="message">הודעה *</label>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="ספרו לנו על החופשה שאתם מחפשים..." required></textarea>
+                                <div class="error-message" id="message-error"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full-width">
+                                <i class="fas fa-paper-plane"></i>
+                                שלח הודעה
+                            </button>
                         </form>
                     </div>
                     <div class="contact-info">
@@ -308,14 +309,14 @@
                             <i class="fas fa-phone"></i>
                             <div>
                                 <h4>טלפון</h4>
-                                <p>03-1234567</p>
+                                <p><a href="tel:03-1234567">03-1234567</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>דוא״ל</h4>
-                                <p>info@smarttravel.co.il</p>
+                                <p><a href="mailto:info@smarttravel.co.il">info@smarttravel.co.il</a></p>
                             </div>
                         </div>
                         <div class="whatsapp-button">
@@ -344,13 +345,14 @@
                     <h4>קישורים מהירים</h4>
                     <ul>
                         <li><a href="#home">בית</a></li>
-                        <li><a href="#deals">דילים חמים</a></li>
                         <li><a href="#about">אודות</a></li>
+                        <li><a href="#testimonials">ביקורות</a></li>
+                        <li><a href="#faq">שאלות נפוצות</a></li>
                         <li><a href="#contact">צור קשר</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>פרטי החברה</h4>
+                    <h4>פרטי חברה</h4>
                     <p>ח.פ: 123456789</p>
                     <p>רחוב הרצל 123, תל אביב</p>
                     <p>03-1234567</p>
@@ -376,32 +378,12 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
-    <!-- Booking Modal -->
-    <div id="bookingModal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>הזמן את החופשה שלך</h3>
-                <button class="modal-close" onclick="closeModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p>מעוניינים ב<span id="selectedDestination"></span>?</p>
-                <p>אנחנו ניצור איתכם קשר בהקדם!</p>
-                <form id="bookingForm">
-                    <div class="form-group">
-                        <label for="bookingName">שם מלא</label>
-                        <input type="text" id="bookingName" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingPhone">טלפון</label>
-                        <input type="tel" id="bookingPhone" name="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookingEmail">דוא״ל</label>
-                        <input type="email" id="bookingEmail" name="email" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full-width">שלח פנייה</button>
-                </form>
-            </div>
+    <!-- Success Message Container -->
+    <div id="successMessage" class="success-message hidden">
+        <div class="success-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>תודה על פנייתך!</h3>
+            <p>קיבלנו את ההודעה שלך ונחזור אליך תוך 24 שעות.</p>
         </div>
     </div>
 
